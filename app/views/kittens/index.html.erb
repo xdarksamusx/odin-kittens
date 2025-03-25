@@ -1,0 +1,6 @@
+<h1> All Kittens  </h1>
+<%  @kittens.each do |kitten| %>
+  <p>  <%= link_to kitten.name,   kitten_path(kitten)   %>
+    <%= link_to "Delete", kitten_path(kitten), method: :delete, data: { turbo_method: :delete, confirm: "Are you sure?" } %></p>
+<%end %>
+<button>  <%= link_to "Create a New Kitten", new_kitten_path, class: "button"  %> </button>
