@@ -1,5 +1,9 @@
 class KittensController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
+  
+
 
   def index
     @kittens = Kitten.all
@@ -33,6 +37,7 @@ class KittensController < ApplicationController
 
   def create
     @kitten = Kitten.new(kitten_params)
+    @kitten.owner = current_user
 
     if @kitten.save
       redirect_to kitten_path(@kitten)
@@ -74,7 +79,7 @@ class KittensController < ApplicationController
   private
 
   def kitten_params
-    params.require(:kitten).permit(:name, :age, :cutness , :softness)
+    params.require(:kitten).permit(:name, :age, :cuteness , :softness)
   end
 
 
