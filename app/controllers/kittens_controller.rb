@@ -61,9 +61,9 @@ class KittensController < ApplicationController
 
 
     if @kitten.update(kitten_params)
-      redirect_to root_path
+      render json: @kitten
     else
-      render :edit , status: :unprocessable_entity
+      render json: @kitten.errors, status: :unprocessable_entity
     end
   end
 
