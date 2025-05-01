@@ -40,9 +40,9 @@ class KittensController < ApplicationController
     @kitten.owner = current_user
 
     if @kitten.save
-      redirect_to kitten_path(@kitten)
-    else
-      render :new , status: :unprocessable_entity
+      render json: @kitten, status: :created
+     else
+      render  json: @kitten.errors, status: :unprocessable_entity
     end
 
 
